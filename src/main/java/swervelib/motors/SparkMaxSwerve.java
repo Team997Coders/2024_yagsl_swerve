@@ -13,6 +13,8 @@ import com.revrobotics.SparkAnalogSensor;
 import com.revrobotics.SparkPIDController;
 import edu.wpi.first.wpilibj.DriverStation;
 import java.util.function.Supplier;
+
+import swervelib.encoders.SparkMaxAnalogEncoderSwerve;
 import swervelib.encoders.SwerveAbsoluteEncoder;
 import swervelib.parser.PIDFConfig;
 import swervelib.telemetry.SwerveDriveTelemetry;
@@ -219,7 +221,13 @@ public class SparkMaxSwerve extends SwerveMotor
         {
           return ((AbsoluteEncoder) absoluteEncoder.getAbsoluteEncoder()).setPositionConversionFactor(
               positionConversionFactor);
-        } else
+        } 
+        else if (absoluteEncoder.getAbsoluteEncoder() instanceof SparkMaxAnalogEncoderSwerve)
+        {
+          ((SparkMaxAnalogEncoderSwerve)absoluteEncoder.getAbsoluteEncoder()).setPositionConversionFactor(positionConversionFactor);
+          return encoder.setPositionConversionFactor(positionConversionFactor);
+        } 
+        else
         {
           return encoder.setPositionConversionFactor(positionConversionFactor);
         }
@@ -229,7 +237,13 @@ public class SparkMaxSwerve extends SwerveMotor
         {
           return ((AbsoluteEncoder) absoluteEncoder.getAbsoluteEncoder()).setVelocityConversionFactor(
               positionConversionFactor / 60);
-        } else
+        } 
+        else if (absoluteEncoder.getAbsoluteEncoder() instanceof SparkMaxAnalogEncoderSwerve)
+        {
+          ((SparkMaxAnalogEncoderSwerve)absoluteEncoder.getAbsoluteEncoder()).setVelocityConversionFactor(positionConversionFactor / 60);
+          return encoder.setVelocityConversionFactor(positionConversionFactor / 60);
+        } 
+        else
         {
           return encoder.setVelocityConversionFactor(
               positionConversionFactor / 60);

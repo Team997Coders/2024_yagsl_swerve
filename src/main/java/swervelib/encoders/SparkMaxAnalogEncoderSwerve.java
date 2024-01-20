@@ -120,6 +120,30 @@ public class SparkMaxAnalogEncoderSwerve extends SwerveAbsoluteEncoder
   }
 
   /**
+   * Set the conversion factor for position of the encoder. Multiplied by the native output units to
+   * give you position.
+   *
+   * @param factor The conversion factor to multiply the native units by
+   * @return {@link REVLibError#kOk} if successful
+   */
+  public REVLibError setPositionConversionFactor(double factor)
+  {
+    return encoder.setPositionConversionFactor(factor);
+  }
+
+  /**
+   * Set the conversion factor for velocity of the encoder. Multiplied by the native output units to
+   * give you velocity
+   *
+   * @param factor The conversion factor to multiply the native units by
+   * @return {@link REVLibError#kOk} if successful
+   */
+  public REVLibError setVelocityConversionFactor(double factor)
+  {
+    return encoder.setVelocityConversionFactor(factor);
+  }
+
+  /**
    * Get the velocity in degrees/sec.
    *
    * @return velocity in degrees/sec.
